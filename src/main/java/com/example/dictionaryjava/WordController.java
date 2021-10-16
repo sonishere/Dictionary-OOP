@@ -95,7 +95,7 @@ public class WordController implements Initializable {
                 printSyn.appendText(syn);
             }
             if (synonym.length() == 0) {
-                printSyn.setText("Doesn't have synonym!");
+                printSyn.setText("This word doesn't have synonym!");
             }
 
         } catch (Exception e) {
@@ -125,7 +125,7 @@ public class WordController implements Initializable {
                 printAnt.appendText(ant);
             }
             if (antonym.length() == 0) {
-                printAnt.setText("Doesn't have synonym!");
+                printAnt.setText("This word doesn't have antonym!");
             }
 
         } catch (Exception e) {
@@ -154,7 +154,7 @@ public class WordController implements Initializable {
                 printSim.appendText(sim);
             }
             if (similar.length() == 0) {
-                printSim.setText("Doesn't have similar words!");
+                printSim.setText("This word doesn't have similar words!");
             }
 
         } catch (Exception e) {
@@ -183,7 +183,7 @@ public class WordController implements Initializable {
                 printEx.appendText(ex);
             }
             if (example.length() == 0) {
-                printEx.setText("Doesn't have similar words!");
+                printEx.setText("This word doesn't have example!");
             }
 
         } catch (Exception e) {
