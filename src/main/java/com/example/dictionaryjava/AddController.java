@@ -3,7 +3,6 @@ package com.example.dictionaryjava;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,11 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class AddController {
     @FXML
@@ -43,7 +40,7 @@ public class AddController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert!");
             alert.setHeaderText("Info: ");
-            alert.setContentText("Quân ngu vl");
+            alert.setContentText("You haven't finished your work yet! \nDo you really want to quit?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -60,7 +57,7 @@ public class AddController {
      */
     public void addToDatabase(ActionEvent event) throws SQLException {
         if (addWord.getText().trim().isEmpty() && addSpeech.getText().trim().isEmpty() && addType.getText().trim().isEmpty() && addMeaning.getText().trim().isEmpty()) {
-            System.out.println("susususus");
+            System.out.println("sus");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thiếu dữ liệu nhập vào");
             alert.setHeaderText("Thông báo:");
@@ -68,7 +65,6 @@ public class AddController {
             alert.showAndWait();
 
         } else {
-
             System.out.println("not sus");
             String key = addWord.getText().toLowerCase(Locale.ROOT);
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");

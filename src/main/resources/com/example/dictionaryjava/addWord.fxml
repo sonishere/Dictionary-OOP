@@ -19,11 +19,11 @@
          </graphic>
       </Button>
       <Button id="minimize" layoutX="1172.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: #212328;" />
-      <TextField fx:id="addWord" layoutX="203.0" layoutY="117.0" prefHeight="36.0" prefWidth="703.0" />
-      <TextField fx:id="addType" layoutX="203.0" layoutY="225.0" prefHeight="36.0" prefWidth="703.0" />
-      <TextField fx:id="addSpeech" layoutX="203.0" layoutY="172.0" prefHeight="36.0" prefWidth="703.0" />
-      <TextArea fx:id="addMeaning" layoutX="203.0" layoutY="300.0" prefHeight="318.0" prefWidth="703.0" />
-      <Button fx:id="submitWord" layoutX="775.0" layoutY="679.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="44.0" prefWidth="133.0" text="Add" />
-      <Button fx:id="resetAdd" layoutX="625.0" layoutY="679.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="133.0" text="Reset" />
+      <TextField fx:id="addWord" layoutX="187.0" layoutY="181.0" prefHeight="36.0" prefWidth="825.0" />
+      <TextField fx:id="addType" layoutX="187.0" layoutY="317.0" prefHeight="36.0" prefWidth="825.0" />
+      <TextField fx:id="addSpeech" layoutX="187.0" layoutY="252.0" prefHeight="36.0" prefWidth="825.0" />
+      <TextArea fx:id="addMeaning" layoutX="187.0" layoutY="380.0" prefHeight="362.0" prefWidth="825.0" />
+      <Button fx:id="submitWord" layoutX="1039.0" layoutY="830.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="44.0" prefWidth="133.0" text="Add" />
+      <Button fx:id="resetAdd" layoutX="889.0" layoutY="830.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="133.0" text="Reset" />
    </children>
 </AnchorPane>

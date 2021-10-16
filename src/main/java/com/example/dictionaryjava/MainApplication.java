@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainApplication extends Application {
-    private double xOffset = 0;
-    private double yOffset = 0;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("MainUI.fxml"));
@@ -25,16 +24,6 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-
-        // draggable menu
-        scene.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        });
-        scene.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
-        });
     }
 
     public static void main(String[] args) {

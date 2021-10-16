@@ -3,6 +3,7 @@ package com.example.dictionaryjava;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,7 +21,9 @@ import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
-    
+    @FXML
+    private AnchorPane mainPane;
+
     @FXML
     private TextField input;
 
@@ -44,6 +48,7 @@ public class MainController implements Initializable {
         welcomeText.add(" → Click on the search bar");
         welcomeText.add(" → Click on alphabet button");
         searchInfo.setItems(welcomeText);
+
     }
     /** Switch scene */
     public void switchToWord(MouseEvent event) throws IOException {
@@ -55,6 +60,10 @@ public class MainController implements Initializable {
             scene = new Scene(root.load());
             WordController wordController = root.getController();
             wordController.printOutput(searchWord);
+            wordController.printSynonym(searchWord);
+            wordController.printAntonym(searchWord);
+            wordController.printSimilar(searchWord);
+            wordController.printExample(searchWord);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
             stage.setScene(scene);
             stage.show();
