@@ -7,13 +7,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 
 <AnchorPane fx:id="wordPane" prefHeight="900.0" prefWidth="1274.0" style="-fx-background-color: #212328;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryjava.WordController">
    <children>
-      <TextArea id="printMeaning" fx:id="printMeaning" editable="false" layoutX="52.0" layoutY="423.0" prefHeight="467.0" prefWidth="673.0" style="-fx-background-color: #212328; -fx-border-color: #212328;" />
-      <TextArea id="printWord" fx:id="printWord" editable="false" layoutX="34.0" layoutY="86.0" prefHeight="114.0" prefWidth="685.0" />
-      <TextArea id="printType" fx:id="printType" editable="false" layoutX="62.0" layoutY="243.0" prefHeight="156.0" prefWidth="661.0" AnchorPane.bottomAnchor="514.0" />
+      <TextArea id="printMeaning" fx:id="printMeaning" editable="false" layoutX="52.0" layoutY="417.0" prefHeight="463.0" prefWidth="674.0" style="-fx-background-color: #212328; -fx-border-color: #212328;" />
+      <TextArea id="printWord" fx:id="printWord" editable="false" layoutX="52.0" layoutY="86.0" prefHeight="168.0" prefWidth="1009.0" />
+      <TextArea id="printType" fx:id="printType" editable="false" layoutX="52.0" layoutY="299.0" prefHeight="102.0" prefWidth="674.0" AnchorPane.bottomAnchor="509.0" />
       <Button id="backMain" layoutX="8.0" layoutY="5.0" mnemonicParsing="false" onAction="#meaningToMain" prefHeight="51.0" prefWidth="72.0" text=" " textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -22,48 +21,28 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Line endX="1166.0" layoutX="108.0" layoutY="400.0" startX="-108.0" stroke="#9a9292" />
-      <Button id="speakSpeech" fx:id="printSpeech" layoutX="961.0" layoutY="151.0" mnemonicParsing="false" onAction="#wordTTS" prefHeight="65.0" prefWidth="271.0">
+      <Button id="speakSpeech" fx:id="printSpeech" layoutX="1088.0" layoutY="144.0" mnemonicParsing="false" onAction="#wordTTS" prefHeight="51.0" prefWidth="134.0">
          <graphic>
-            <ImageView fitHeight="39.0" fitWidth="37.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="39.0" fitWidth="29.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@finalimages/Mic.png" />
-               </image></ImageView>
+               </image>
+            </ImageView>
          </graphic>
       </Button>
-      <Line endX="-19.5" endY="-39.5" layoutX="769.0" layoutY="439.0" startX="-19.5" startY="464.0" stroke="#9a9292" />
-      <TabPane layoutX="763.0" layoutY="407.0" prefHeight="234.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="752.0" layoutY="287.0" prefHeight="590.0" prefWidth="471.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Synonyms">
+          <Tab text="Untitled Tab 1">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea id="printMore" fx:id="printSyn" editable="false" layoutX="3.0" prefHeight="200.0" prefWidth="379.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="463.0" />
             </content>
           </Tab>
-          <Tab text="Antonyms">
+          <Tab text="Untitled Tab 2">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea fx:id="printAnt" editable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="497.0" />
             </content>
           </Tab>
-            <Tab text="Similar Words">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea fx:id="printSim" editable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
         </tabs>
       </TabPane>
-      <Line endX="496.5" endY="210.0" layoutX="779.0" layoutY="449.0" startX="-29.0" startY="210.0" stroke="#9a9292" />
-      <TextArea fx:id="printEx" layoutX="763.0" layoutY="672.0" prefHeight="220.0" prefWidth="500.0" />
    </children>
 </AnchorPane>
