@@ -72,6 +72,9 @@ public class WordController implements Initializable {
     }
 
     public void printSynonym(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String synURL = newURL.replace("&", "synonyms");
 //        String exURL = newURL.replace("&", "examples");
@@ -86,8 +89,11 @@ public class WordController implements Initializable {
                     .build();
 
             HttpResponse<String> responseSyn = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(responseSyn.body());
             JSONObject myObject1 = new JSONObject(responseSyn.body());
+            if (myObject1.isNull("synonyms")) {
+                printSyn.setText("Doesn't have synonym!");
+                return ;
+            }
             JSONArray synonym = (JSONArray) myObject1.get("synonyms");
 
             for (Object c : synonym) {
@@ -104,6 +110,9 @@ public class WordController implements Initializable {
     }
 
     public void printAntonym(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String antURL = newURL.replace("&", "antonyms");
         System.out.println(newURL);
@@ -118,14 +127,17 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("antonyms")) {
+                printAnt.setText("Doesn't have antonyms!");
+                throw new Exception();
+            }
             JSONArray antonym = (JSONArray) myObject.get("antonyms");
-
             for (Object c : antonym) {
                 String ant = c + "\n";
                 printAnt.appendText(ant);
             }
             if (antonym.length() == 0) {
-                printAnt.setText("Doesn't have synonym!");
+                printAnt.setText("Doesn't have antonyms!");
             }
 
         } catch (Exception e) {
@@ -134,6 +146,9 @@ public class WordController implements Initializable {
     }
 
     public void printSimilar(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String simURL = newURL.replace("&", "similarTo");
 
@@ -147,6 +162,10 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("similarTo")) {
+                printSim.setText("Doesn't have similar words!");
+                throw new Exception();
+            }
             JSONArray similar = (JSONArray) myObject.get("similarTo");
 
             for (Object c : similar) {
@@ -163,6 +182,9 @@ public class WordController implements Initializable {
     }
 
     public void printExample(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String exURL = newURL.replace("&", "examples");
 
@@ -176,6 +198,10 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("examples")) {
+                printEx.setText("Doesn't have examples!");
+                return ;
+            }
             JSONArray example = (JSONArray) myObject.get("examples");
 
             for (Object c : example) {
@@ -183,7 +209,7 @@ public class WordController implements Initializable {
                 printEx.appendText(ex);
             }
             if (example.length() == 0) {
-                printEx.setText("Doesn't have similar words!");
+                printEx.setText("Doesn't have examples!");
             }
 
         } catch (Exception e) {
