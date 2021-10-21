@@ -3,7 +3,6 @@ package com.example.dictionaryjava;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,9 +34,6 @@ public class MainController implements Initializable {
     private ListView<String> searchInfo;
 
     @FXML
-    private Button A, B, C, D;
-
-    @FXML
     private HBox alphabetBar;
 
     private Stage stage;
@@ -45,10 +41,6 @@ public class MainController implements Initializable {
     private FXMLLoader root;
     String defaultImage = "finalimages/1.png";
     DatabaseToStorage db = new DatabaseToStorage();
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,19 +61,33 @@ public class MainController implements Initializable {
         String searchWord = searchInfo.getSelectionModel().getSelectedItem();
         if (searchWord != null) {
             searchInfo.getSelectionModel().selectedItemProperty();
-            root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root.load());
-            WordController wordController = root.getController();
-            wordController.printOutput(searchWord);
-            wordController.printSynonym(searchWord);
-            wordController.printAntonym(searchWord);
-            wordController.printSimilar(searchWord);
-            wordController.printExample(searchWord);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
-            stage.setScene(scene);
-            stage.show();
+            SwapStage(searchWord);
         }
+    }
+
+    public void inputToWord(ActionEvent event) throws IOException {
+        String inputWord = input.getText();
+        ObservableList<String> listWord = searchInfo.getItems();
+        for(String word : listWord) {
+            if (inputWord != null && inputWord.toLowerCase(Locale.ROOT).equals(word)) {
+                SwapStage(word);
+            }
+        }
+    }
+
+    private void SwapStage(String word) throws IOException {
+        root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+        stage = (Stage) mainPane.getScene().getWindow();
+        scene = new Scene(root.load());
+        WordController wordController = root.getController();
+        wordController.printOutput(word);
+        wordController.printSynonym(word);
+        wordController.printAntonym(word);
+        wordController.printSimilar(word);
+        wordController.printExample(word);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void switchToAdd(ActionEvent event) throws IOException {
@@ -96,7 +102,7 @@ public class MainController implements Initializable {
     /**
      * Search with suggestion
      */
-    public void onTyping() throws IOException {
+    public void onTyping() {
         boolean isRun = false;
         searchInfo.setMouseTransparent(false);
         searchInfo.setFocusTraversable(true);
@@ -112,26 +118,16 @@ public class MainController implements Initializable {
                         String newImage = defaultImage.replace("1", buttonId);
                         Image ima = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newImage)));
                         wordImage.setImage(ima);
-
-                        root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
-                        stage = (Stage) mainPane.getScene().getWindow();
-                        scene = new Scene(root.load());
                         char i = 'A';
                         String str = "#";
-                        System.out.println(i);
-
                         while (i < 'Z') {
                             StringBuilder sb = new StringBuilder();
                             sb.append(str).append(i);
                             Button b = (Button) alphabetBar.lookup(sb.toString());
-
-                            System.out.println(b.getId());
                             if (compareText.toLowerCase(Locale.ROOT).startsWith(b.getId().toLowerCase(Locale.ROOT))) {
                                 b.setStyle("-fx-background-color: #f97449;");
-                                System.out.println("success");
                             } else {
                                 b.setStyle("-fx-background-color: transparent;");
-                                System.out.println("fail");
                             }
                             i++;
 
@@ -155,7 +151,7 @@ public class MainController implements Initializable {
     /**
      * Change alphabet's picture when click button
      */
-    public void onClick(ActionEvent event) throws IOException {
+    public void onClick(ActionEvent event) {
         input.clear();
         searchInfo.setMouseTransparent(false);
         searchInfo.setFocusTraversable(true);
