@@ -81,34 +81,34 @@
                   </HBox>
                </center>
             </BorderPane>
-            <HBox id="alphabetBar" prefHeight="74.0" prefWidth="1274.0">
+            <HBox id="alphabetBar" fx:id="alphabetBar" prefHeight="74.0" prefWidth="1274.0">
                <children>
                   <Button id="A" fx:id="A" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="A" />
                   <Button id="B" fx:id="B" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="B" />
                   <Button id="C" fx:id="C" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="C" />
-                  <Button id="D" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="D" />
-                  <Button id="E" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="E" />
-                  <Button id="F" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="F" />
-                  <Button id="G" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="G" />
-                  <Button id="H" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="H" />
-                  <Button id="I" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="I" />
-                  <Button id="J" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="J" />
-                  <Button id="K" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="K" />
-                  <Button id="L" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="L" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="M" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="N" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="O" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="P" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="R" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Q" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="S" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="T" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="U" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="V" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="W" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="X" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Y" />
-                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Z" />
+                  <Button id="D" fx:id="D" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="D" />
+                  <Button id="E" fx:id="E" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="E" />
+                  <Button id="F" fx:id="F" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="F" />
+                  <Button id="G" fx:id="G" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="G" />
+                  <Button id="H" fx:id="H" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="H" />
+                  <Button id="I" fx:id="I" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="I" />
+                  <Button id="J" fx:id="J" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="J" />
+                  <Button id="K" fx:id="K" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="K" />
+                  <Button id="L" fx:id="L" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="L" />
+                  <Button fx:id="M" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="M" />
+                  <Button fx:id="N" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="N" />
+                  <Button fx:id="O" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="O" />
+                  <Button fx:id="P" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="P" />
+                  <Button fx:id="R" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="R" />
+                  <Button fx:id="Q" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Q" />
+                  <Button fx:id="S" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="S" />
+                  <Button fx:id="T" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="T" />
+                  <Button fx:id="U" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="U" />
+                  <Button fx:id="V" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="V" />
+                  <Button fx:id="W" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="W" />
+                  <Button fx:id="X" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="X" />
+                  <Button fx:id="Y" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Y" />
+                  <Button fx:id="Z" mnemonicParsing="false" onAction="#onClick" prefHeight="88.0" prefWidth="49.0" text="Z" />
                </children>
             </HBox>
             <HBox prefHeight="762.0" prefWidth="1274.0" style="-fx-background-color: #22253b;">
