@@ -6,11 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Locale;
@@ -29,17 +33,23 @@ public class AddController {
     @FXML
     private TextArea addMeaning;
 
+    @FXML
+    private Button backToMain;
+
+    @FXML
+    private Button resetAdd;
+
     DatabaseToStorage db = new DatabaseToStorage();
 
 
-    public void addToMain(ActionEvent event) throws IOException {
+    public void backToMain(ActionEvent event) throws IOException {
         Scene scene;
         Stage stage;
         FXMLLoader root;
-        if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
+        if (!addWord.getText().trim().isEmpty() || !addSpeech.getText().trim().isEmpty() || !addType.getText().trim().isEmpty() || !addMeaning.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert!");
-            alert.setHeaderText("Info: ");
+            alert.setHeaderText(null);
             alert.setContentText("You haven't finished your work yet! \nDo you really want to quit?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
@@ -49,6 +59,13 @@ public class AddController {
                 stage.setScene(scene);
                 stage.show();
             }
+        } else {
+            root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root.load());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
@@ -80,6 +97,41 @@ public class AddController {
             db.typeStore.put(key, addType.getText().toLowerCase(Locale.ROOT));
             db.meaningStore.put(key, addMeaning.getText().toLowerCase(Locale.ROOT));
         }
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Lỗi!");
+            error.setHeaderText(null);
+            error.setContentText("Hãy điền đầy đủ thông tin.");
+            error.showAndWait();
+        } else {
+            String command = "INSERT INTO dict(word, speech, type, meaning) VALUES(?, ?, ?, ?)";
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(command);
+                preparedStatement.setObject(1, addWord.getText());
+                preparedStatement.setObject(2, addSpeech.getText());
+                preparedStatement.setObject(3, addType.getText());
+                preparedStatement.setObject(4, addMeaning.getText());
+                preparedStatement.executeUpdate();
+
+                Alert infor = new Alert(Alert.AlertType.INFORMATION);
+                infor.setTitle("Thông báo");
+                infor.setHeaderText(null);
+                infor.setContentText("Thêm từ thành công");
+                infor.showAndWait();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void resetAdd(ActionEvent event) throws SQLException {
+        addWord.clear();
+        addSpeech.clear();
+        addType.clear();
+        addMeaning.clear();
     }
 
 }

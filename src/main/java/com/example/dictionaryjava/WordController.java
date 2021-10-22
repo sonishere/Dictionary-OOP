@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
@@ -29,7 +30,7 @@ public class WordController implements Initializable {
     private TextArea printWord;
 
     @FXML
-    private Button printSpeech;
+    private Label printSpeech;
 
     @FXML
     private TextArea printType;
