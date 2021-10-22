@@ -9,15 +9,19 @@
     -fx-text-fill: #d4d4d4;
     -fx-control-inner-background: #212328;
     -fx-text-box-border: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-focus-color: transparent;
     -fx-prompt-text-fill: #212328;
+    -fx-border-color: transparent;
+    -fx-border-width: 5;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
 }
 
 .text-area .content {
     -fx-background-radius: 10;
+}
+
+.tab-pane .label {
+    -fx-background-color: transparent;
 }
 
 #backMain {
@@ -38,13 +42,11 @@
 
 #printWord {
     -fx-control-inner-background: #8d65e5;
-    -fx-background-color: #8d65e5;
     -fx-font-size: 68px;
     -fx-font-weight: bold;
 }
 
 #printType {
-    -fx-background-color: #385fc7;
     -fx-control-inner-background: #385fc7;
     -fx-font-size: 22px;
 }
@@ -65,19 +67,18 @@
 
 #printMeaning {
     -fx-font-size: 17px;
-    -fx-background-color: #385fc7;
     -fx-control-inner-background: #385fc7;
 }
 
 #printMore {
     -fx-font-size: 17px;
-    -fx-background-color: #437367;
     -fx-control-inner-background: #437367;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 #printEx {
     -fx-font-size: 17px;
-    -fx-background-color: #437367;
     -fx-control-inner-background: #437367;
 }
 
