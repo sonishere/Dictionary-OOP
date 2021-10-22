@@ -12,10 +12,12 @@
     -fx-faint-focus-color: transparent;
     -fx-focus-color: transparent;
     -fx-prompt-text-fill: #212328;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .text-area .content {
-    -fx-background-radius: 0;
+    -fx-background-radius: 10;
 }
 
 #backMain {
@@ -35,15 +37,20 @@
 
 
 #printWord {
+    -fx-control-inner-background: #8d65e5;
+    -fx-background-color: #8d65e5;
     -fx-font-size: 68px;
     -fx-font-weight: bold;
 }
 
 #printType {
+    -fx-background-color: #385fc7;
+    -fx-control-inner-background: #385fc7;
     -fx-font-size: 22px;
 }
 
 #printSpeech {
+    -fx-background-color: #8d65e5;
     -fx-font-size: 17px;
 }
 
@@ -58,10 +65,20 @@
 
 #printMeaning {
     -fx-font-size: 17px;
+    -fx-background-color: #385fc7;
+    -fx-control-inner-background: #385fc7;
 }
 
 #printMore {
     -fx-font-size: 17px;
+    -fx-background-color: #437367;
+    -fx-control-inner-background: #437367;
+}
+
+#printEx {
+    -fx-font-size: 17px;
+    -fx-background-color: #437367;
+    -fx-control-inner-background: #437367;
 }
 
 .scroll-bar {
