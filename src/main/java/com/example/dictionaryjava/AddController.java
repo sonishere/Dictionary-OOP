@@ -74,7 +74,7 @@ public class AddController {
     /**
      * add word to database
      */
-    public void addToDatabase(ActionEvent event) throws SQLException {
+    public void addToDatabase(ActionEvent event) throws SQLException, IOException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
 
         if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
@@ -83,6 +83,29 @@ public class AddController {
             error.setHeaderText(null);
             error.setContentText("Hãy điền đầy đủ thông tin.");
             error.showAndWait();
+
+        } else if (db.checkDuplicate(addWord.getText())) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Lỗi!");
+            error.setHeaderText("Từ bạn muốn thêm đã tồn tại.");
+            error.setContentText("Bấm OK để kiểm tra từ.");
+            error.showAndWait();
+
+
+            FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root.load());
+            WordController wordController = root.getController();
+            wordController.printOutput(addWord.getText());
+            wordController.printSynonym(addWord.getText());
+            wordController.printAntonym(addWord.getText());
+            wordController.printSimilar(addWord.getText());
+            wordController.printExample(addWord.getText());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+
+
         } else {
             String command = "INSERT INTO dict(word, speech, type, meaning) VALUES(?, ?, ?, ?)";
 

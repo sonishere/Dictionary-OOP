@@ -38,6 +38,10 @@ public class DatabaseToStorage {
         wordStore.sort(Comparator.comparing(o -> o));
     }
 
+    public boolean checkDuplicate(String word) {
+        return wordStore.contains(word);
+    }
+
 
     /**
      * print out the database storage.
