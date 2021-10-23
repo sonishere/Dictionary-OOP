@@ -17,7 +17,7 @@ public class DatabaseToStorage {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
 
             Statement s = con.createStatement();
-            ResultSet r = s.executeQuery("SELECT * FROM dict");
+            ResultSet r = s.executeQuery("SELECT * FROM dict ORDER BY word");
             while (r.next()) {
                 wordStore.add(r.getString("word").toLowerCase(Locale.ROOT));
                 speechStore.put(r.getString("word").toLowerCase(Locale.ROOT), r.getString("speech").toLowerCase(Locale.ROOT));
@@ -31,11 +31,7 @@ public class DatabaseToStorage {
     }
 
     public void sortDatabase() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
-        Statement statement = connection.createStatement();
-        String sort = "SELECT * FROM dict ORDER BY word";
-        statement.executeQuery(sort);
-        wordStore.sort(Comparator.comparing(o -> o));
+        Collections.sort(wordStore);
     }
 
     public boolean checkDuplicate(String word) {

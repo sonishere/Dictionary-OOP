@@ -87,10 +87,17 @@ public class EditController {
 
                 db.sortDatabase();
 
-                FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root.load());
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+                WordController wordController = root.getController();
+                wordController.printOutput(newWord.getText());
+                wordController.printSynonym(newWord.getText());
+                wordController.printAntonym(newWord.getText());
+                wordController.printSimilar(newWord.getText());
+                wordController.printExample(newWord.getText());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
                 stage.setScene(scene);
                 stage.show();
 

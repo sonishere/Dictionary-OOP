@@ -90,7 +90,7 @@ public class MainController implements Initializable {
             for(String s : db.wordStore) {
                 if(s.startsWith(compareText.toLowerCase())) {
                     filterList.add(s);
-                    if(!isRun) {
+                    if(!isRun && !compareText.isEmpty()) {
                         String buttonId = Character.toString(s.charAt(0)).toUpperCase();
                         String newImage = defaultImage.replace("1", buttonId);
                         Image ima = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newImage)));

@@ -25,7 +25,7 @@
         <TextField fx:id="newSpeech" layoutX="756.0" layoutY="218.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
         <TextArea fx:id="newMeaning" layoutX="756.0" layoutY="397.0" prefHeight="313.0" prefWidth="425.0" />
         <Button fx:id="submitWord" layoutX="1032.0" layoutY="749.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="44.0" prefWidth="133.0" text="Save change" />
-        <Button fx:id="resetAdd" layoutX="864.0" layoutY="748.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="133.0" text="Reset" />
+        <Button fx:id="resetAdd" layoutX="864.0" layoutY="748.0" mnemonicParsing="false" onAction="#resetAdd" prefHeight="44.0" prefWidth="133.0" text="Reset" />
         <Label id="wordLabel" contentDisplay="CENTER" layoutX="605.0" layoutY="140.0" prefHeight="32.0" prefWidth="65.0" stylesheets="@styles/style.css" text="Word" AnchorPane.leftAnchor="605.0" />
         <Label id="speechLabel" layoutX="554.0" layoutY="229.0" stylesheets="@styles/style.css" text="Pronunciation" textAlignment="CENTER" AnchorPane.leftAnchor="554.0" />
         <Label id="typeLabel" layoutX="609.0" layoutY="319.0" stylesheets="@styles/style.css" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="609.0" />
