@@ -50,9 +50,9 @@ public class AddController {
         FXMLLoader root;
         if (!addWord.getText().trim().isEmpty() || !addSpeech.getText().trim().isEmpty() || !addType.getText().trim().isEmpty() || !addMeaning.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Alert!");
+            alert.setTitle("Cảnh báo!");
             alert.setHeaderText(null);
-            alert.setContentText("You haven't finished your work yet! \nDo you really want to quit?");
+            alert.setContentText("Bạn vẫn chưa hoàn thành xong?\nBạn có chắc muốn thoát chứ?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
