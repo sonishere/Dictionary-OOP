@@ -1,9 +1,7 @@
 package com.example.dictionaryjava;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 public class DatabaseToStorage {
     public ArrayList<String> wordStore = new ArrayList<>();
@@ -31,6 +29,15 @@ public class DatabaseToStorage {
             e.printStackTrace();
         }
     }
+
+    public void sortDatabase() throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Statement statement = connection.createStatement();
+        String sort = "SELECT * FROM dict ORDER BY word";
+        statement.executeQuery(sort);
+        wordStore.sort(Comparator.comparing(o -> o));
+    }
+
 
     /**
      * print out the database storage.

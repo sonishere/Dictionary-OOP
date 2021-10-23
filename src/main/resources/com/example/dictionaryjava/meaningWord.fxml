@@ -22,7 +22,7 @@
                     </image>
                 </ImageView>
             </graphic></Button>
-        <Button id="speakSpeech" layoutX="1086.0" layoutY="147.0" mnemonicParsing="false" onAction="#wordTTS" prefHeight="51.0" prefWidth="134.0">
+        <Button id="speakSpeech" layoutX="1087.0" layoutY="86.0" mnemonicParsing="false" onAction="#wordTTS" prefHeight="51.0" prefWidth="134.0">
             <graphic>
                 <ImageView fitHeight="39.0" fitWidth="29.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -64,5 +64,7 @@
         </TabPane>
         <TextArea id="printEx" fx:id="printEx" layoutX="751.0" layoutY="596.0" prefHeight="260.0" prefWidth="470.0" />
         <Label id="printSpeech" fx:id="printSpeech" layoutX="99.0" layoutY="188.0" prefHeight="37.0" prefWidth="406.0" />
+      <Button layoutX="1087.0" layoutY="148.0" mnemonicParsing="false" onAction="#removeWord" prefHeight="51.0" prefWidth="134.0" text="Delete" />
+      <Button layoutX="1087.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchToEdit" prefHeight="51.0" prefWidth="134.0" text="Edit" />
     </children>
 </AnchorPane>
