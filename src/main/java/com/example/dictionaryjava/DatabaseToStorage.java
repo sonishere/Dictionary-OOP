@@ -30,10 +30,6 @@ public class DatabaseToStorage {
         }
     }
 
-    public void sortDatabase() throws SQLException {
-        Collections.sort(wordStore);
-    }
-
     public boolean checkDuplicate(String word) {
         return wordStore.contains(word);
     }

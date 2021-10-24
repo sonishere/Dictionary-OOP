@@ -30,9 +30,10 @@
         <Label id="speechLabel" layoutX="554.0" layoutY="229.0" stylesheets="@styles/style.css" text="Pronunciation" textAlignment="CENTER" AnchorPane.leftAnchor="554.0" />
         <Label id="typeLabel" layoutX="609.0" layoutY="319.0" stylesheets="@styles/style.css" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="609.0" />
         <Label id="meaningLabel" layoutX="583.0" layoutY="403.0" stylesheets="@styles/style.css" text="Meaning" textAlignment="CENTER" AnchorPane.leftAnchor="583.0" />
-        <TextField fx:id="oldWord" layoutX="101.0" layoutY="131.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="oldType" layoutX="101.0" layoutY="308.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="oldSpeech" layoutX="101.0" layoutY="219.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextArea fx:id="oldMeaning" layoutX="101.0" layoutY="398.0" prefHeight="313.0" prefWidth="425.0" />
+        <TextField fx:id="oldWord" editable="false" layoutX="101.0" layoutY="131.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="oldType" editable="false" layoutX="101.0" layoutY="308.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="oldSpeech" editable="false" layoutX="101.0" layoutY="219.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextArea fx:id="oldMeaning" editable="false" layoutX="101.0" layoutY="398.0" prefHeight="313.0" prefWidth="425.0" />
+      <Button layoutX="571.0" layoutY="748.0" mnemonicParsing="false" onAction="#quickCopy" prefHeight="44.0" prefWidth="133.0" text="Copy" />
     </children>
 </AnchorPane>

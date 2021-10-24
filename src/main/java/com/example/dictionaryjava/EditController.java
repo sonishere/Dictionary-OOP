@@ -37,6 +37,9 @@ public class EditController {
     private Button resetAdd;
 
     @FXML
+    private Button quickCopy;
+
+    @FXML
     private TextField oldWord;
 
     @FXML
@@ -85,8 +88,6 @@ public class EditController {
                 infor.setContentText("Sửa từ thành công");
                 infor.showAndWait();
 
-                db.sortDatabase();
-
 
                 FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -116,23 +117,43 @@ public class EditController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert!");
             alert.setHeaderText(null);
-            alert.setContentText("You haven't finished your work yet! \nDo you really want to quit?");
+            alert.setContentText("Bạn vẫn chưa hoàn thành xong?\nBạn có chắc muốn thoát chứ?");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+                stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root.load());
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+                WordController wordController = root.getController();
+                wordController.printOutput(oldWord.getText());
+                wordController.printSynonym(oldWord.getText());
+                wordController.printAntonym(oldWord.getText());
+                wordController.printSimilar(oldWord.getText());
+                wordController.printExample(oldWord.getText());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
                 stage.setScene(scene);
                 stage.show();
             }
         } else {
-            root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root.load());
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+            WordController wordController = root.getController();
+            wordController.printOutput(oldWord.getText());
+            wordController.printSynonym(oldWord.getText());
+            wordController.printAntonym(oldWord.getText());
+            wordController.printSimilar(oldWord.getText());
+            wordController.printExample(oldWord.getText());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    @FXML
+    void quickCopy(ActionEvent event) {
+        newWord.setText(oldWord.getText());
+        newSpeech.setText(oldSpeech.getText());
+        newType.setText(oldType.getText());
+        newMeaning.setText(oldMeaning.getText());
     }
 
     public void resetAdd(ActionEvent event) throws SQLException {

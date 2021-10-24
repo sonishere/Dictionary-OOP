@@ -117,8 +117,6 @@ public class AddController {
                 preparedStatement.setObject(4, addMeaning.getText());
                 preparedStatement.executeUpdate();
 
-                // sap xep lai database sau khi add
-                db.sortDatabase();
 
                 // hoi user co muon tiep tuc them tu
                 Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
