@@ -149,10 +149,22 @@ public class EditController {
     }
 
     @FXML
-    void quickCopy(ActionEvent event) {
+    void wordCopy(ActionEvent event) {
         newWord.setText(oldWord.getText());
+    }
+
+    @FXML
+    void speechCopy(ActionEvent event) {
         newSpeech.setText(oldSpeech.getText());
+    }
+
+    @FXML
+    void typeCopy(ActionEvent event) {
         newType.setText(oldType.getText());
+    }
+
+    @FXML
+    void meaningCopy(ActionEvent event) {
         newMeaning.setText(oldMeaning.getText());
     }
 
