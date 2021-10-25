@@ -1,5 +1,3 @@
-
-
 * {
     -fx-font-family: "Century Gothic";
 }
@@ -8,7 +6,7 @@
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-radius: 0;
-    -fx-background-color: transparent;
+    -fx-background-color: #72bbef;
     -fx-text-fill: black;
     -fx-font-size: 14;
     -fx-font-weight: 700;
@@ -37,6 +35,15 @@
     -fx-font-size: 17px;
 }
 
+.text-area {
+    -fx-padding: 5 3 1 3;
+    -fx-font-size: 17px;
+    -fx-border-color: white;
+}
+
+.text-area:focused {
+    -fx-font-size: 17px;
+}
 
 .list-view {
     -fx-border-color: transparent;
@@ -141,4 +148,9 @@
 #mainToWord:pressed {
     -fx-background-color: #989898;
     -fx-border-style: none;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 25;
 }

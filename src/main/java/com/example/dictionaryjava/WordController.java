@@ -1,31 +1,37 @@
 package com.example.dictionaryjava;
 
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+
 import javafx.scene.control.*;
+
 import javafx.stage.Stage;
 
-import org.json.*;
-
-import java.net.*;
-
-import com.sun.speech.freetts.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class WordController implements Initializable {
     @FXML
@@ -75,6 +81,9 @@ public class WordController implements Initializable {
     }
 
     public void printSynonym(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String synURL = newURL.replace("&", "synonyms");
 //        String exURL = newURL.replace("&", "examples");
@@ -89,8 +98,11 @@ public class WordController implements Initializable {
                     .build();
 
             HttpResponse<String> responseSyn = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(responseSyn.body());
             JSONObject myObject1 = new JSONObject(responseSyn.body());
+            if (myObject1.isNull("synonyms")) {
+                printSyn.setText("Doesn't have synonym!");
+                return ;
+            }
             JSONArray synonym = (JSONArray) myObject1.get("synonyms");
 
             for (Object c : synonym) {
@@ -98,7 +110,7 @@ public class WordController implements Initializable {
                 printSyn.appendText(syn);
             }
             if (synonym.length() == 0) {
-                printSyn.setText("Doesn't have synonym!");
+                printSyn.setText("This word doesn't have synonym!");
             }
 
         } catch (Exception e) {
@@ -107,6 +119,9 @@ public class WordController implements Initializable {
     }
 
     public void printAntonym(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String antURL = newURL.replace("&", "antonyms");
         System.out.println(newURL);
@@ -121,14 +136,17 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("antonyms")) {
+                printAnt.setText("Doesn't have antonyms!");
+                throw new Exception();
+            }
             JSONArray antonym = (JSONArray) myObject.get("antonyms");
-
             for (Object c : antonym) {
                 String ant = c + "\n";
                 printAnt.appendText(ant);
             }
             if (antonym.length() == 0) {
-                printAnt.setText("Doesn't have synonym!");
+                printAnt.setText("This word doesn't have antonym!");
             }
 
         } catch (Exception e) {
@@ -137,6 +155,9 @@ public class WordController implements Initializable {
     }
 
     public void printSimilar(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String simURL = newURL.replace("&", "similarTo");
 
@@ -150,6 +171,10 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("similarTo")) {
+                printSim.setText("Doesn't have similar words!");
+                throw new Exception();
+            }
             JSONArray similar = (JSONArray) myObject.get("similarTo");
 
             for (Object c : similar) {
@@ -157,7 +182,7 @@ public class WordController implements Initializable {
                 printSim.appendText(sim);
             }
             if (similar.length() == 0) {
-                printSim.setText("Doesn't have similar words!");
+                printSim.setText("This word doesn't have similar words!");
             }
 
         } catch (Exception e) {
@@ -166,6 +191,9 @@ public class WordController implements Initializable {
     }
 
     public void printExample(String searchWord) {
+        if (searchWord.contains(" ")) {
+            searchWord = searchWord.replace(" ", "%20");
+        }
         String newURL = defaultURL.replace("*", searchWord);
         String exURL = newURL.replace("&", "examples");
 
@@ -179,6 +207,10 @@ public class WordController implements Initializable {
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+            if (myObject.isNull("examples")) {
+                printEx.setText("Doesn't have examples!");
+                return ;
+            }
             JSONArray example = (JSONArray) myObject.get("examples");
 
             for (Object c : example) {
@@ -186,7 +218,7 @@ public class WordController implements Initializable {
                 printEx.appendText(ex);
             }
             if (example.length() == 0) {
-                printEx.setText("Doesn't have similar words!");
+                printEx.setText("This word doesn't have example!");
             }
 
         } catch (Exception e) {
