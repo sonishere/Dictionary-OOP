@@ -44,9 +44,9 @@ public class MainController implements Initializable {
         searchInfo.setMouseTransparent( true );
         searchInfo.setFocusTraversable( false );
         ObservableList<String> welcomeText = FXCollections.observableArrayList();
-        welcomeText.add("\nWelcome to Adict-ed! \nTo get start, you can: ");
-        welcomeText.add(" → Click on the search bar");
-        welcomeText.add(" → Click on alphabet button");
+        welcomeText.add("\nWelcome to Adict-ed!");
+        welcomeText.add(" → Type on the search bar to find your word");
+        welcomeText.add(" → Click on characters to browse words");
         searchInfo.setItems(welcomeText);
 
     }
