@@ -8,9 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+
+import javafx.scene.control.*;
+
 import javafx.stage.Stage;
 
 import org.json.JSONArray;
@@ -19,6 +19,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -240,5 +248,52 @@ public class WordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+    }
+
+    public void removeWord(ActionEvent event) throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Warning!");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn muốn xóa từ này?");
+        if (confirm.showAndWait().get() == ButtonType.OK) {
+            String command = "DELETE FROM dict WHERE word = ?";
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(command);
+                preparedStatement.setObject(1, printWord.getText());
+                preparedStatement.executeUpdate();
+
+                Alert infor = new Alert(Alert.AlertType.INFORMATION);
+                infor.setTitle("Thông báo");
+                infor.setHeaderText(null);
+                infor.setContentText("Xóa từ thành công");
+
+                // quay ve main
+                FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("MainUI.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root.load());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+                stage.setScene(scene);
+                stage.show();
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void switchToEdit(ActionEvent event) throws IOException {
+
+        FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("editWord.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root.load());
+
+        EditController editController = root.getController();
+        editController.printOldOutput(printWord.getText());
+
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 }

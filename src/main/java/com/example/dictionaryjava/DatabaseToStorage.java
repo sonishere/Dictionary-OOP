@@ -1,9 +1,7 @@
 package com.example.dictionaryjava;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 public class DatabaseToStorage {
     public ArrayList<String> wordStore = new ArrayList<>();
@@ -16,9 +14,9 @@ public class DatabaseToStorage {
      */
     public DatabaseToStorage() {
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
             Statement s = con.createStatement();
-            ResultSet r = s.executeQuery("SELECT * FROM dict");
+            ResultSet r = s.executeQuery("SELECT * FROM dict ORDER BY word");
             while (r.next()) {
                 wordStore.add(r.getString("word").toLowerCase(Locale.ROOT));
                 speechStore.put(r.getString("word").toLowerCase(Locale.ROOT), r.getString("speech").toLowerCase(Locale.ROOT));
@@ -30,6 +28,11 @@ public class DatabaseToStorage {
             e.printStackTrace();
         }
     }
+
+    public boolean checkDuplicate(String word) {
+        return wordStore.contains(word);
+    }
+
 
     /**
      * print out the database storage.

@@ -6,11 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Locale;
@@ -29,18 +33,26 @@ public class AddController {
     @FXML
     private TextArea addMeaning;
 
+    @FXML
+    private Button backToMain;
+
+    @FXML
+    private Button resetAdd;
+
     DatabaseToStorage db = new DatabaseToStorage();
 
-
-    public void addToMain(ActionEvent event) throws IOException {
+    /**
+     * quay ve main screen
+     */
+    public void backToMain(ActionEvent event) throws IOException {
         Scene scene;
         Stage stage;
         FXMLLoader root;
-        if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
+        if (!addWord.getText().trim().isEmpty() || !addSpeech.getText().trim().isEmpty() || !addType.getText().trim().isEmpty() || !addMeaning.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Alert!");
-            alert.setHeaderText("Info: ");
-            alert.setContentText("You haven't finished your work yet! \nDo you really want to quit?");
+            alert.setTitle("Cảnh báo!");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn vẫn chưa hoàn thành xong?\nBạn có chắc muốn thoát chứ?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -49,37 +61,94 @@ public class AddController {
                 stage.setScene(scene);
                 stage.show();
             }
+        } else {
+            root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root.load());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
     /**
      * add word to database
      */
-    public void addToDatabase(ActionEvent event) throws SQLException {
+
+    public void addToDatabase(ActionEvent event) throws SQLException, IOException {
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+
         if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
-            System.out.println("sus");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Missing input!");
-            alert.setHeaderText("Warning:");
-            alert.setContentText("Please fill in all the field!");
-            alert.showAndWait();
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Lỗi!");
+            error.setHeaderText(null);
+            error.setContentText("Hãy điền đầy đủ thông tin.");
+            error.showAndWait();
+
+        } else if (db.checkDuplicate(addWord.getText())) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Lỗi!");
+            error.setHeaderText("Từ bạn muốn thêm đã tồn tại.");
+            error.setContentText("Bấm OK để kiểm tra từ.");
+            error.showAndWait();
+
+
+            FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root.load());
+            WordController wordController = root.getController();
+            wordController.printOutput(addWord.getText());
+            wordController.printSynonym(addWord.getText());
+            wordController.printAntonym(addWord.getText());
+            wordController.printSimilar(addWord.getText());
+            wordController.printExample(addWord.getText());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+
 
         } else {
-            System.out.println("not sus");
-            String key = addWord.getText().toLowerCase(Locale.ROOT);
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
-            String command = "INSERT INTO dict (word, speech, type, meaning) VALUES (?, ?, ?, ?)";
-            PreparedStatement statement = con.prepareStatement(command);
-            statement.setObject(1, db.wordStore);
-            statement.setObject(2, db.speechStore);
-            statement.setObject(3, db.typeStore);
-            statement.setObject(4, db.meaningStore);
-            statement.execute();
-            db.wordStore.add(key);
-            db.speechStore.put(key, addSpeech.getText().toLowerCase(Locale.ROOT));
-            db.typeStore.put(key, addType.getText().toLowerCase(Locale.ROOT));
-            db.meaningStore.put(key, addMeaning.getText().toLowerCase(Locale.ROOT));
+            String command = "INSERT INTO dict(word, speech, type, meaning) VALUES(?, ?, ?, ?)";
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(command);
+                preparedStatement.setObject(1, addWord.getText());
+                preparedStatement.setObject(2, addSpeech.getText());
+                preparedStatement.setObject(3, addType.getText());
+                preparedStatement.setObject(4, addMeaning.getText());
+                preparedStatement.executeUpdate();
+
+
+                // hoi user co muon tiep tuc them tu
+                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+                confirm.setTitle("Thông báo");
+                confirm.setHeaderText("Thêm từ thành công!");
+                confirm.setContentText("Bạn có muốn tiếp tục thêm từ?");
+                if (confirm.showAndWait().get() == ButtonType.OK) {
+                    addWord.clear();
+                    addSpeech.clear();
+                    addType.clear();
+                    addMeaning.clear();
+                } else {
+                    FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root.load());
+                    scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
+                    stage.setScene(scene);
+                    stage.show();
+                }
+
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    public void resetAdd(ActionEvent event) throws SQLException {
+        addWord.clear();
+        addSpeech.clear();
+        addType.clear();
+        addMeaning.clear();
     }
 
 }
