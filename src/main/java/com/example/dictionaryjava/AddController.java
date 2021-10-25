@@ -56,18 +56,18 @@ public class AddController {
      * add word to database
      */
     public void addToDatabase(ActionEvent event) throws SQLException {
-        if (addWord.getText().trim().isEmpty() && addSpeech.getText().trim().isEmpty() && addType.getText().trim().isEmpty() && addMeaning.getText().trim().isEmpty()) {
+        if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
             System.out.println("sus");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thiếu dữ liệu nhập vào");
-            alert.setHeaderText("Thông báo:");
-            alert.setContentText("Hãy điền vào tất cả các mục!");
+            alert.setTitle("Missing input!");
+            alert.setHeaderText("Warning:");
+            alert.setContentText("Please fill in all the field!");
             alert.showAndWait();
 
         } else {
             System.out.println("not sus");
             String key = addWord.getText().toLowerCase(Locale.ROOT);
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
             String command = "INSERT INTO dict (word, speech, type, meaning) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(command);
             statement.setObject(1, db.wordStore);
