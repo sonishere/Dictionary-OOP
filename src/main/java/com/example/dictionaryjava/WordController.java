@@ -1,5 +1,7 @@
 package com.example.dictionaryjava;
 
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,19 +12,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import org.json.*;
-
-import java.net.*;
-
-import com.sun.speech.freetts.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class WordController implements Initializable {
     @FXML

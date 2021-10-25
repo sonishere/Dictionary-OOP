@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -81,6 +82,7 @@ public class MainController implements Initializable {
         scene = new Scene(root.load());
         WordController wordController = root.getController();
         wordController.printOutput(word);
+
         wordController.printSynonym(word);
         wordController.printAntonym(word);
         wordController.printSimilar(word);
@@ -118,20 +120,7 @@ public class MainController implements Initializable {
                         String newImage = defaultImage.replace("1", buttonId);
                         Image ima = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newImage)));
                         wordImage.setImage(ima);
-                        char i = 'A';
-                        String str = "#";
-                        while (i < 'Z') {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(str).append(i);
-                            Button b = (Button) alphabetBar.lookup(sb.toString());
-                            if (compareText.toLowerCase(Locale.ROOT).startsWith(b.getId().toLowerCase(Locale.ROOT))) {
-                                b.setStyle("-fx-background-color: #f97449;");
-                            } else {
-                                b.setStyle("-fx-background-color: transparent;");
-                            }
-                            i++;
 
-                        }
                         isRun = true;
 
                     }
@@ -153,8 +142,22 @@ public class MainController implements Initializable {
      */
     public void onClick(ActionEvent event) {
         input.clear();
+        alphabetBar.setStyle(null);
         searchInfo.setMouseTransparent(false);
         searchInfo.setFocusTraversable(true);
+
+        char im = 'A';
+        String str = "#";
+        while (im < 'Z') {
+            StringBuilder sb = new StringBuilder();
+            sb.append(str).append(im);
+            Button b = (Button) alphabetBar.lookup(sb.toString());
+            System.out.println(b.getId());
+                b.setStyle(null);
+            im++;
+
+        }
+
         String value = ((Button) event.getSource()).getText();
         String newImage = defaultImage.replace("1", value);
         Image i = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newImage)));
@@ -185,4 +188,22 @@ public class MainController implements Initializable {
     /** end of set function for custom button */
 
 
+    public void changeButton() {
+        char i = 'A';
+        String str = "#";
+        while (i < 'Z') {
+            StringBuilder sb = new StringBuilder();
+            sb.append(str).append(i);
+            Button b = (Button) alphabetBar.lookup(sb.toString());
+            System.out.println(b.getId());
+            if (input.getText().toLowerCase(Locale.ROOT).startsWith(b.getId().toLowerCase(Locale.ROOT))) {
+                b.setStyle("-fx-background-color: #f97449;");
+            }
+            else {
+                b.setStyle(null);
+            }
+            i++;
+
+        }
+    }
 }
