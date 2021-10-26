@@ -11,9 +11,9 @@
 
 <AnchorPane fx:id="wordPane" prefHeight="900.0" prefWidth="1274.0" style="-fx-background-color: #212328;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryjava.WordController">
     <children>
-        <TextArea id="printMeaning" fx:id="printMeaning" editable="false" layoutX="52.0" layoutY="417.0" prefHeight="439.0" prefWidth="674.0" />
+        <TextArea id="printMeaning" fx:id="printMeaning" editable="false" layoutX="52.0" layoutY="375.0" prefHeight="481.0" prefWidth="674.0" />
         <TextArea id="printWord" fx:id="printWord" editable="false" layoutX="52.0" layoutY="86.0" prefHeight="174.0" prefWidth="1010.0" />
-        <TextArea id="printType" fx:id="printType" editable="false" layoutX="52.0" layoutY="299.0" prefHeight="102.0" prefWidth="674.0" AnchorPane.bottomAnchor="509.0" />
+        <TextArea id="printType" fx:id="printType" editable="false" layoutX="52.0" layoutY="299.0" prefHeight="58.0" prefWidth="674.0" AnchorPane.bottomAnchor="553.0" />
         <Button id="backMain" layoutX="8.0" layoutY="5.0" mnemonicParsing="false" onAction="#meaningToMain" prefHeight="51.0" prefWidth="72.0" text=" " textAlignment="CENTER">
             <graphic>
                 <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -62,9 +62,24 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <TextArea id="printEx" fx:id="printEx" layoutX="751.0" layoutY="596.0" prefHeight="260.0" prefWidth="470.0" />
-        <Label id="printSpeech" fx:id="printSpeech" layoutX="99.0" layoutY="188.0" prefHeight="37.0" prefWidth="406.0" />
-      <Button layoutX="1087.0" layoutY="148.0" mnemonicParsing="false" onAction="#removeWord" prefHeight="51.0" prefWidth="134.0" text="Delete" />
-      <Button layoutX="1087.0" layoutY="213.0" mnemonicParsing="false" onAction="#switchToEdit" prefHeight="51.0" prefWidth="134.0" text="Edit" />
+        <TextArea id="printEx" fx:id="printEx" layoutX="751.0" layoutY="616.0" prefHeight="240.0" prefWidth="470.0" />
+        <Label id="printSpeech" fx:id="printSpeech" layoutX="99.0" layoutY="196.0" prefHeight="37.0" prefWidth="406.0" />
+      <Button layoutX="1087.0" layoutY="146.0" mnemonicParsing="false" onAction="#removeWord" prefHeight="51.0" prefWidth="134.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="35.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Delete.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="1087.0" layoutY="208.0" mnemonicParsing="false" onAction="#switchToEdit" prefHeight="51.0" prefWidth="134.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="39.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Edit.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="763.0" layoutY="576.0" prefHeight="39.0" prefWidth="116.0" text="Example" />
     </children>
 </AnchorPane>

@@ -27,23 +27,29 @@
     -fx-border-radius: 10;
 }
 
+.text-field {
+    -fx-wrap-text: true;
+    -fx-text-fill: #d4d4d4;
+    -fx-control-inner-background: #212328;
+    -fx-text-box-border: transparent;
+    -fx-prompt-text-fill: #212328;
+    -fx-border-color: transparent;
+    -fx-border-width: 5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
 .tab-pane .label {
     -fx-background-color: transparent;
 }
 
 #backMain {
-    -fx-font-family: sans-serif;
-    -fx-font-weight: bold;
-    -fx-background-color: #212328;
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
-#backMain > .button:pressed {
-    -fx-font-family: sans-serif;
-    -fx-background-color: black;
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
+#backMain:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 10, 0.5, 0.0, 0.0);
 }
 
 
@@ -58,32 +64,43 @@
     -fx-font-size: 22px;
 }
 
+#printType .content {
+    -fx-padding: 10 0 0 20;
+}
+
 #printSpeech {
     -fx-font-size: 17px;
     -fx-text-fill: white;
 }
 
-#speakSpeech {
-    -fx-border-color: #b4b4b4;
-    -fx-border-width: 1px;
+.button {
+    -fx-border-color: white;
+    -fx-border-width: 3px;
     -fx-border-radius: 30px;
     -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: rgba(208, 208, 208, 0.55);
+    -fx-background-radius: 30px;
 }
 
 #printMeaning {
-    -fx-font-size: 17px;
+    -fx-font-size: 22px;
     -fx-control-inner-background: #474454;
 }
 
 #printMore {
-    -fx-font-size: 17px;
+    -fx-font-size: 22px;
     -fx-control-inner-background: #474454;
     -fx-border-radius: 5 10 10 10;
     -fx-background-radius: 5 10 10 10;
 }
 
 #printEx {
-    -fx-font-size: 17px;
+    -fx-font-size: 22px;
     -fx-control-inner-background: #474454;
 }
 
@@ -177,4 +194,26 @@
 .tab-pane > .tab-header-area > .tab-header-background {
     -fx-background-color:#212328;
     -fx-background-insets: 0;
+}
+
+#addMeaning {
+    -fx-font-size: 18px;
+}
+
+#oldMeaning {
+    -fx-font-size: 18px;
+}
+
+#newMeaning {
+    -fx-font-size: 18px;
+}
+
+.label {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+}
+
+#copy {
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
 }

@@ -96,6 +96,7 @@ public class MainController implements Initializable {
         root = new FXMLLoader(MainApplication.class.getResource("addWord.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root.load());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

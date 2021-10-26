@@ -64,13 +64,13 @@ public class EditController {
 
     @FXML
     void addToDatabase(ActionEvent event) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
 
         if (newWord.getText().trim().isEmpty() || newSpeech.getText().trim().isEmpty() || newType.getText().trim().isEmpty() || newMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Lỗi!");
+            error.setTitle("Error!");
             error.setHeaderText(null);
-            error.setContentText("Hãy điền đầy đủ thông tin.");
+            error.setContentText("Please fill in all the fields.");
             error.showAndWait();
         } else {
             String command = "UPDATE dict SET word = ?, speech = ?, type = ?, meaning = ? WHERE word = ?";
@@ -85,9 +85,9 @@ public class EditController {
                 preparedStatement.executeUpdate();
 
                 Alert infor = new Alert(Alert.AlertType.INFORMATION);
-                infor.setTitle("Thông báo");
+                infor.setTitle("Success");
                 infor.setHeaderText(null);
-                infor.setContentText("Sửa từ thành công");
+                infor.setContentText("Edited successfully!");
                 infor.showAndWait();
 
 
@@ -119,7 +119,7 @@ public class EditController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert!");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn vẫn chưa hoàn thành xong?\nBạn có chắc muốn thoát chứ?");
+            alert.setContentText("You haven't finished your work yet.\nAre you sure you want to exit?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
                 stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

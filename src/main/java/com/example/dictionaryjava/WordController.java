@@ -251,12 +251,12 @@ public class WordController implements Initializable {
     }
 
     public void removeWord(ActionEvent event) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Warning!");
         confirm.setHeaderText(null);
-        confirm.setContentText("Bạn muốn xóa từ này?");
+        confirm.setContentText("Are you sure you want to delete this word?");
         if (confirm.showAndWait().get() == ButtonType.OK) {
             String command = "DELETE FROM dict WHERE word = ?";
 
@@ -266,9 +266,9 @@ public class WordController implements Initializable {
                 preparedStatement.executeUpdate();
 
                 Alert infor = new Alert(Alert.AlertType.INFORMATION);
-                infor.setTitle("Thông báo");
+                infor.setTitle("Success!");
                 infor.setHeaderText(null);
-                infor.setContentText("Xóa từ thành công");
+                infor.setContentText("Deleted successfully!");
 
                 // quay ve main
                 FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("MainUI.fxml"));

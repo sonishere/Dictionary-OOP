@@ -10,33 +10,61 @@
 
 <AnchorPane id="wordPane" prefHeight="900.0" prefWidth="1274.0" style="-fx-background-color: #212328;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryjava.EditController">
     <children>
-        <Button id="backMain" layoutY="7.0" mnemonicParsing="false" onAction="#addToMain" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #212328;" text=" " textAlignment="CENTER">
-            <graphic>
-                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@finalimages/backMain.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
-        <Button id="minimize" layoutX="1172.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: #212328;" />
-        <TextField fx:id="newWord" layoutX="756.0" layoutY="130.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="newType" layoutX="756.0" layoutY="307.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="newSpeech" layoutX="756.0" layoutY="218.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextArea fx:id="newMeaning" layoutX="756.0" layoutY="397.0" prefHeight="313.0" prefWidth="425.0" />
-        <Button fx:id="submitWord" layoutX="1032.0" layoutY="749.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="44.0" prefWidth="133.0" text="Save change" />
-        <Button fx:id="resetAdd" layoutX="864.0" layoutY="748.0" mnemonicParsing="false" onAction="#resetAdd" prefHeight="44.0" prefWidth="133.0" text="Reset" />
-        <Label id="wordLabel" contentDisplay="CENTER" layoutX="605.0" layoutY="140.0" prefHeight="32.0" prefWidth="65.0" stylesheets="@styles/style.css" text="Word" AnchorPane.leftAnchor="605.0" />
-        <Label id="speechLabel" layoutX="554.0" layoutY="229.0" stylesheets="@styles/style.css" text="Pronunciation" textAlignment="CENTER" AnchorPane.leftAnchor="554.0" />
-        <Label id="typeLabel" layoutX="609.0" layoutY="319.0" stylesheets="@styles/style.css" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="609.0" />
-        <Label id="meaningLabel" layoutX="583.0" layoutY="403.0" stylesheets="@styles/style.css" text="Meaning" textAlignment="CENTER" AnchorPane.leftAnchor="583.0" />
-        <TextField fx:id="oldWord" editable="false" layoutX="101.0" layoutY="131.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="oldType" editable="false" layoutX="101.0" layoutY="308.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="oldSpeech" editable="false" layoutX="101.0" layoutY="219.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextArea fx:id="oldMeaning" editable="false" layoutX="101.0" layoutY="398.0" prefHeight="313.0" prefWidth="425.0" />
-      <Button layoutX="670.0" layoutY="139.0" mnemonicParsing="false" onAction="#wordCopy" prefHeight="32.0" prefWidth="81.0" text="wordCopy" />
-      <Button layoutX="670.0" layoutY="227.0" mnemonicParsing="false" onAction="#speechCopy" prefHeight="32.0" prefWidth="81.0" text="speechCopy" />
-      <Button layoutX="670.0" layoutY="318.0" mnemonicParsing="false" onAction="#typeCopy" prefHeight="32.0" prefWidth="81.0" text="typeCopy" />
-      <Button layoutX="670.0" layoutY="538.0" mnemonicParsing="false" onAction="#meaningCopy" prefHeight="32.0" prefWidth="81.0" text="meaningCopy" />
+        <Button id="backMain" layoutY="7.0" mnemonicParsing="false" onAction="#addToMain" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #212328;" text=" " textAlignment="CENTER" />
+        <TextField fx:id="newWord" layoutX="712.0" layoutY="128.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="newType" layoutX="712.0" layoutY="305.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="newSpeech" layoutX="712.0" layoutY="216.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextArea fx:id="newMeaning" layoutX="712.0" layoutY="395.0" prefHeight="313.0" prefWidth="425.0" />
+        <Button fx:id="submitWord" layoutX="965.0" layoutY="748.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="45.0" prefWidth="172.0" text="Save change" />
+        <Button fx:id="resetAdd" layoutX="797.0" layoutY="747.0" mnemonicParsing="false" onAction="#resetAdd" prefHeight="44.0" prefWidth="133.0" text="Reset" />
+        <Label id="wordLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="554.0" layoutY="137.0" prefHeight="32.0" prefWidth="86.0" stylesheets="@styles/style.css" text="Word" AnchorPane.leftAnchor="554.0" />
+        <Label id="speechLabel" alignment="CENTER" layoutX="507.0" layoutY="225.0" prefHeight="32.0" prefWidth="181.0" stylesheets="@styles/style.css" text="Pronunciation" textAlignment="CENTER" AnchorPane.leftAnchor="507.0" />
+        <Label id="typeLabel" alignment="CENTER" layoutX="561.0" layoutY="314.0" prefHeight="32.0" prefWidth="72.0" stylesheets="@styles/style.css" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="561.0" />
+        <Label id="meaningLabel" alignment="CENTER" layoutX="534.0" layoutY="403.0" prefHeight="32.0" prefWidth="127.0" stylesheets="@styles/style.css" text="Meaning" textAlignment="CENTER" AnchorPane.leftAnchor="534.0" />
+        <TextField fx:id="oldWord" editable="false" layoutX="57.0" layoutY="129.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="oldType" editable="false" layoutX="57.0" layoutY="306.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="oldSpeech" editable="false" layoutX="57.0" layoutY="217.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextArea fx:id="oldMeaning" editable="false" layoutX="57.0" layoutY="396.0" prefHeight="313.0" prefWidth="425.0" />
+      <Button id="copy" layoutX="1154.0" layoutY="127.0" mnemonicParsing="false" onAction="#wordCopy" prefHeight="55.0" prefWidth="63.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Copy.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="copy" layoutX="1154.0" layoutY="215.0" mnemonicParsing="false" onAction="#speechCopy" prefHeight="32.0" prefWidth="63.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Copy.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="copy" layoutX="1154.0" layoutY="304.0" mnemonicParsing="false" onAction="#typeCopy" prefHeight="32.0" prefWidth="63.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Copy.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="copy" layoutX="1154.0" layoutY="391.0" mnemonicParsing="false" onAction="#meaningCopy" prefHeight="32.0" prefWidth="63.0">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/Copy.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button id="backMain" mnemonicParsing="false" onAction="#addToMain" prefHeight="51.0" prefWidth="72.0" text=" " textAlignment="CENTER">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@finalimages/backMain.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>

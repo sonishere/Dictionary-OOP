@@ -50,9 +50,9 @@ public class AddController {
         FXMLLoader root;
         if (!addWord.getText().trim().isEmpty() || !addSpeech.getText().trim().isEmpty() || !addType.getText().trim().isEmpty() || !addMeaning.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Cảnh báo!");
+            alert.setTitle("Warning!");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn vẫn chưa hoàn thành xong?\nBạn có chắc muốn thoát chứ?");
+            alert.setContentText("You haven't finished your work yet.\nAre you sure you want to exit?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -76,20 +76,20 @@ public class AddController {
      */
 
     public void addToDatabase(ActionEvent event) throws SQLException, IOException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
 
         if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Lỗi!");
+            error.setTitle("Error!");
             error.setHeaderText(null);
-            error.setContentText("Hãy điền đầy đủ thông tin.");
+            error.setContentText("Please fill in all the fields.");
             error.showAndWait();
 
         } else if (db.checkDuplicate(addWord.getText())) {
             Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Lỗi!");
-            error.setHeaderText("Từ bạn muốn thêm đã tồn tại.");
-            error.setContentText("Bấm OK để kiểm tra từ.");
+            error.setTitle("Error!");
+            error.setHeaderText("This word is already exist.");
+            error.setContentText("Click OK to browse this word.");
             error.showAndWait();
 
 
@@ -121,9 +121,9 @@ public class AddController {
 
                 // hoi user co muon tiep tuc them tu
                 Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-                confirm.setTitle("Thông báo");
-                confirm.setHeaderText("Thêm từ thành công!");
-                confirm.setContentText("Bạn có muốn tiếp tục thêm từ?");
+                confirm.setTitle("Success!");
+                confirm.setHeaderText("Added successfully!");
+                confirm.setContentText("Do you want to add another one?");
                 if (confirm.showAndWait().get() == ButtonType.OK) {
                     addWord.clear();
                     addSpeech.clear();
