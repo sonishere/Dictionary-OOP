@@ -110,7 +110,7 @@ public class AddController {
             stage.setScene(scene);
             stage.show();
 
-        } else if (!Pattern.matches("[a-zA-ZÀ-ȕ.'\s-]{1,100}", addWord.getText())) {
+        } else if (!Pattern.matches("[a-zA-ZÀ-ÖØ-öø-ÿ.'\s-]{1,100}", addWord.getText())) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
             error.setHeaderText(null);
