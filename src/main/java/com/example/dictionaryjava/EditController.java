@@ -65,7 +65,6 @@ public class EditController {
     @FXML
     void addToDatabase(ActionEvent event) throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
-
         if (newWord.getText().trim().isEmpty() || newSpeech.getText().trim().isEmpty() || newType.getText().trim().isEmpty() || newMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");

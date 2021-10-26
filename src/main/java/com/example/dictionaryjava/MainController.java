@@ -49,7 +49,7 @@ public class MainController implements Initializable {
         searchInfo.setFocusTraversable(false);
         ObservableList<String> welcomeText = FXCollections.observableArrayList();
         welcomeText.add("\nWelcome to Adict-ed!");
-        welcomeText.add(" → Type on the search bar to find your word");
+        welcomeText.add(" → Type on the search bar to find \nyour word");
         welcomeText.add(" → Click on characters to browse words");
         searchInfo.setItems(welcomeText);
 
@@ -112,11 +112,11 @@ public class MainController implements Initializable {
 
         ObservableList<String> filterList = FXCollections.observableArrayList();
         String compareText = input.getText();
+
         if (!compareText.equals(" ")) {
             for (String s : db.wordStore) {
                 if (s.startsWith(compareText.toLowerCase())) {
                     filterList.add(s);
-                  
                     if(!isRun && !compareText.isEmpty()) {
                         String buttonId = Character.toString(s.charAt(0)).toUpperCase();
                         String newImage = defaultImage.replace("1", buttonId);
@@ -134,6 +134,12 @@ public class MainController implements Initializable {
                 searchInfo.setMouseTransparent(true);
                 searchInfo.setFocusTraversable(false);
             }
+        }
+        else {
+            String sus = "\nCan't find your word? \n\nClick the \"Add Word\" button above \nto add a new word!";
+            filterList.add(sus);
+            searchInfo.setMouseTransparent(true);
+            searchInfo.setFocusTraversable(false);
         }
         searchInfo.setItems(filterList);
     }

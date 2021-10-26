@@ -26,7 +26,7 @@ public class Reader {
         Scanner sc = null;
         try {
             try {
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
                 Statement stat = con.createStatement();
                 inputStream = new FileInputStream("src/main/resources/db-in-text/en_vi.txt");
                 sc = new Scanner(inputStream, StandardCharsets.UTF_8);
