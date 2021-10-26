@@ -8,18 +8,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
@@ -36,6 +40,9 @@ public class MainController implements Initializable {
 
     @FXML
     private HBox alphabetBar;
+
+    @FXML
+    private Button about;
 
     private Stage stage;
     private Scene scene;
@@ -183,6 +190,19 @@ public class MainController implements Initializable {
     /**
      * set function for custom button
      */
+    public void aboutUs(ActionEvent event) throws IOException {
+        Stage stage1 = new Stage();
+        FXMLLoader root1 = new FXMLLoader(MainApplication.class.getResource("aboutsus.fxml"));
+        Scene scene1 = new Scene(root1.load());
+        scene1.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/aboutUs.css")).toExternalForm());
+        stage1.setScene(scene1);
+        stage1.setTitle("About us");
+        stage1.setResizable(false);
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.initOwner(about.getScene().getWindow());
+        stage1.showAndWait();
+    }
+
     public void setMinimize(ActionEvent event) {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.setIconified(true);

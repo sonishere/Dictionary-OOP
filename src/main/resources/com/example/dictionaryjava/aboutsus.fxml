@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="aboutUs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryjava.AboutController">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="217.0" layoutX="195.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@finalimages/logo.png" />
+         </image>
+      </ImageView>
+      <Label id="version" alignment="CENTER" layoutX="262.0" layoutY="128.0" prefHeight="26.0" prefWidth="89.0" text="Version 1.0">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Label>
+      <Pane id="card1" layoutX="36.0" layoutY="164.0" prefHeight="150.0" prefWidth="534.0" style="-fx-border-color: white; -fx-border-radius: 75; -fx-background-radius: 75;">
+         <children>
+            <Label alignment="CENTER" layoutX="166.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text=" Nguyễn Trường Sơn" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label alignment="CENTER" layoutX="346.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text=" Label" />
+            <Hyperlink alignment="CENTER" layoutX="166.0" layoutY="80.0" onAction="#fb1" prefHeight="35.0" prefWidth="170.0" text="Facebook" />
+            <Hyperlink alignment="CENTER" layoutX="346.0" layoutY="80.0" onAction="#gh1" prefHeight="35.0" prefWidth="170.0" text="Github" />
+            <StackPane style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 75;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@creators/sonishere.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </Pane>
+      <Pane id="card2" layoutX="35.0" layoutY="337.0" prefHeight="150.0" prefWidth="534.0" style="-fx-border-color: white; -fx-border-radius: 75; -fx-background-radius: 75;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="18.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text="19020584 " />
+            <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="198.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text="Phạm Thanh Ngân " />
+            <Hyperlink alignment="CENTER" contentDisplay="RIGHT" layoutX="18.0" layoutY="80.0" onAction="#gh2" prefHeight="35.0" prefWidth="170.0" text="Github" />
+            <Hyperlink alignment="CENTER" contentDisplay="RIGHT" layoutX="198.0" layoutY="80.0" onAction="#fb2" prefHeight="35.0" prefWidth="170.0" text="Facebook" />
+            <StackPane layoutX="384.0" style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 75;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@creators/mashumaro.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </Pane>
+      <Pane id="card3" layoutX="36.0" layoutY="509.0" prefHeight="150.0" prefWidth="534.0" style="-fx-border-color: white; -fx-border-radius: 75; -fx-background-radius: 75;">
+         <children>
+            <Label alignment="CENTER" layoutX="166.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text=" Nguyễn Hoàng Hiệp" />
+            <Label alignment="CENTER" layoutX="346.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" text=" 19020541" />
+            <Hyperlink alignment="CENTER" layoutX="166.0" layoutY="80.0" onAction="#fb3" prefHeight="35.0" prefWidth="170.0" text="Facebook" />
+            <Hyperlink alignment="CENTER" layoutX="346.0" layoutY="80.0" onAction="#gh3" prefHeight="35.0" prefWidth="170.0" text="Github" />
+            <StackPane style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 75;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@creators/potayto.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -86,12 +86,12 @@ public class AddController {
             error.showAndWait();
 
         } else if (db.checkDuplicate(addWord.getText())) {
+
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
             error.setHeaderText("This word is already exist.");
             error.setContentText("Click OK to browse this word.");
             error.showAndWait();
-
 
             FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -106,8 +106,8 @@ public class AddController {
             stage.setScene(scene);
             stage.show();
 
-
         } else {
+
             String command = "INSERT INTO dict(word, speech, type, meaning) VALUES(?, ?, ?, ?)";
 
             try {
@@ -117,7 +117,6 @@ public class AddController {
                 preparedStatement.setObject(3, addType.getText());
                 preparedStatement.setObject(4, addMeaning.getText());
                 preparedStatement.executeUpdate();
-
 
                 // hoi user co muon tiep tuc them tu
                 Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
@@ -137,7 +136,6 @@ public class AddController {
                     stage.setScene(scene);
                     stage.show();
                 }
-
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
@@ -150,5 +148,4 @@ public class AddController {
         addType.clear();
         addMeaning.clear();
     }
-
 }

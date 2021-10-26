@@ -73,7 +73,7 @@
     -fx-text-fill: white;
 }
 
-#minimize, #close {
+#minimize, #close, #about {
     -fx-background-color: #212328;
 }
 
@@ -141,7 +141,7 @@
 }
 
 #mainToWord:hover {
-    -fx-background-color: #cccccc;
+    -fx-background-color: rgba(208, 208, 208, 0.55);
     -fx-font-size: 17;
 }
 
