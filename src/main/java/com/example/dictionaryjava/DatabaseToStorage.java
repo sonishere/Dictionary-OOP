@@ -15,7 +15,6 @@ public class DatabaseToStorage {
     public DatabaseToStorage() {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
-
             Statement s = con.createStatement();
             ResultSet r = s.executeQuery("SELECT * FROM dict ORDER BY word");
             while (r.next()) {

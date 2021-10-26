@@ -2,6 +2,7 @@ package com.example.dictionaryjava;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -15,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
+
 
 public class EditController {
 
@@ -174,5 +176,5 @@ public class EditController {
         newType.clear();
         newMeaning.clear();
     }
-
 }
+
