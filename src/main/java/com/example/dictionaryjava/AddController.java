@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class AddController {
     @FXML
@@ -40,6 +41,7 @@ public class AddController {
     private Button resetAdd;
 
     DatabaseToStorage db = new DatabaseToStorage();
+
 
     /**
      * quay ve main screen
@@ -76,7 +78,7 @@ public class AddController {
      */
 
     public void addToDatabase(ActionEvent event) throws SQLException, IOException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
 
         if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
@@ -85,7 +87,7 @@ public class AddController {
             error.setContentText("Please fill in all the fields.");
             error.showAndWait();
 
-        } else if (db.checkDuplicate(addWord.getText())) {
+        } else if (db.checkDuplicate(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "))) {
 
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
@@ -96,15 +98,24 @@ public class AddController {
             FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root.load());
+
             WordController wordController = root.getController();
-            wordController.printOutput(addWord.getText());
-            wordController.printSynonym(addWord.getText());
-            wordController.printAntonym(addWord.getText());
-            wordController.printSimilar(addWord.getText());
-            wordController.printExample(addWord.getText());
+            wordController.printOutput(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+            wordController.printSynonym(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+            wordController.printAntonym(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+            wordController.printSimilar(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+            wordController.printExample(addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
             stage.setScene(scene);
             stage.show();
+
+        } else if (!Pattern.matches("[a-zA-ZÀ-ȕ.'\s-]{1,100}", addWord.getText())) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error!");
+            error.setHeaderText(null);
+            error.setContentText("Dont type any weird characters!");
+            error.showAndWait();
 
         } else {
 
@@ -112,10 +123,10 @@ public class AddController {
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(command);
-                preparedStatement.setObject(1, addWord.getText());
-                preparedStatement.setObject(2, addSpeech.getText());
-                preparedStatement.setObject(3, addType.getText());
-                preparedStatement.setObject(4, addMeaning.getText());
+                preparedStatement.setString(1, addWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+                preparedStatement.setString(2, addSpeech.getText());
+                preparedStatement.setString(3, addType.getText());
+                preparedStatement.setString(4, addMeaning.getText());
                 preparedStatement.executeUpdate();
 
                 // hoi user co muon tiep tuc them tu

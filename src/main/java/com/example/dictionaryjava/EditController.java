@@ -15,7 +15,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 
 public class EditController {
@@ -55,6 +57,7 @@ public class EditController {
 
     DatabaseToStorage db = new DatabaseToStorage();
 
+
     public void printOldOutput(String Word) {
         oldWord.setText(Word);
         oldSpeech.setText(db.speechStore.get(Word));
@@ -64,23 +67,31 @@ public class EditController {
 
     @FXML
     void addToDatabase(ActionEvent event) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "l0ngp@ssw0rd");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
         if (newWord.getText().trim().isEmpty() || newSpeech.getText().trim().isEmpty() || newType.getText().trim().isEmpty() || newMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
             error.setHeaderText(null);
             error.setContentText("Please fill in all the fields.");
             error.showAndWait();
+
+        } else if (!Pattern.matches("[a-zA-ZÀ-ȕ.'\s-]{1,100}", newWord.getText())) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error!");
+            error.setHeaderText(null);
+            error.setContentText("Dont type any weird characters!");
+            error.showAndWait();
+
         } else {
             String command = "UPDATE dict SET word = ?, speech = ?, type = ?, meaning = ? WHERE word = ?";
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(command);
-                preparedStatement.setObject(1, newWord.getText());
-                preparedStatement.setObject(2, newSpeech.getText());
-                preparedStatement.setObject(3, newType.getText());
-                preparedStatement.setObject(4, newMeaning.getText());
-                preparedStatement.setObject(5, oldWord.getText());
+                preparedStatement.setString(1, newWord.getText().trim().toLowerCase(Locale.ROOT).replaceAll("\\s+", " "));
+                preparedStatement.setString(2, newSpeech.getText());
+                preparedStatement.setString(3, newType.getText());
+                preparedStatement.setString(4, newMeaning.getText());
+                preparedStatement.setString(5, oldWord.getText());
                 preparedStatement.executeUpdate();
 
                 Alert infor = new Alert(Alert.AlertType.INFORMATION);
@@ -94,11 +105,11 @@ public class EditController {
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root.load());
                 WordController wordController = root.getController();
-                wordController.printOutput(newWord.getText());
-                wordController.printSynonym(newWord.getText());
-                wordController.printAntonym(newWord.getText());
-                wordController.printSimilar(newWord.getText());
-                wordController.printExample(newWord.getText());
+                wordController.printOutput(newWord.getText().trim().replaceAll("\\s+", " "));
+                wordController.printSynonym(newWord.getText().trim().replaceAll("\\s+", " "));
+                wordController.printAntonym(newWord.getText().trim().replaceAll("\\s+", " "));
+                wordController.printSimilar(newWord.getText().trim().replaceAll("\\s+", " "));
+                wordController.printExample(newWord.getText().trim().replaceAll("\\s+", " "));
                 scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/styleWord.css")).toExternalForm());
                 stage.setScene(scene);
                 stage.show();
