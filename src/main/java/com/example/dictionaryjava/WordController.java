@@ -81,9 +81,11 @@ public class WordController implements Initializable {
     }
 
     public void printSynonym(String searchWord) {
+
         if (searchWord.contains(" ")) {
             searchWord = searchWord.replace(" ", "%20");
         }
+
         String newURL = defaultURL.replace("*", searchWord);
         String synURL = newURL.replace("&", "synonyms");
 //        String exURL = newURL.replace("&", "examples");
@@ -96,32 +98,35 @@ public class WordController implements Initializable {
                     .header("x-rapidapi-key", "a1cb4a03cbmsh356febaaaaadf1fp1e52f7jsn24e947c5d6db")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
-
             HttpResponse<String> responseSyn = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject1 = new JSONObject(responseSyn.body());
+
             if (myObject1.isNull("synonyms")) {
                 printSyn.setText("Doesn't have synonym!");
                 return ;
             }
+
             JSONArray synonym = (JSONArray) myObject1.get("synonyms");
 
             for (Object c : synonym) {
                 String syn = c + "\n";
                 printSyn.appendText(syn);
             }
+
             if (synonym.length() == 0) {
                 printSyn.setText("This word doesn't have synonym!");
             }
-
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     public void printAntonym(String searchWord) {
+
         if (searchWord.contains(" ")) {
             searchWord = searchWord.replace(" ", "%20");
         }
+
         String newURL = defaultURL.replace("*", searchWord);
         String antURL = newURL.replace("&", "antonyms");
         System.out.println(newURL);
@@ -133,22 +138,24 @@ public class WordController implements Initializable {
                     .header("x-rapidapi-key", "a1cb4a03cbmsh356febaaaaadf1fp1e52f7jsn24e947c5d6db")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
-
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+
             if (myObject.isNull("antonyms")) {
                 printAnt.setText("Doesn't have antonyms!");
                 throw new Exception();
             }
+
             JSONArray antonym = (JSONArray) myObject.get("antonyms");
+
             for (Object c : antonym) {
                 String ant = c + "\n";
                 printAnt.appendText(ant);
             }
+
             if (antonym.length() == 0) {
                 printAnt.setText("This word doesn't have antonym!");
             }
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -158,6 +165,7 @@ public class WordController implements Initializable {
         if (searchWord.contains(" ")) {
             searchWord = searchWord.replace(" ", "%20");
         }
+
         String newURL = defaultURL.replace("*", searchWord);
         String simURL = newURL.replace("&", "similarTo");
 
@@ -168,32 +176,35 @@ public class WordController implements Initializable {
                     .header("x-rapidapi-key", "a1cb4a03cbmsh356febaaaaadf1fp1e52f7jsn24e947c5d6db")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
-
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+
             if (myObject.isNull("similarTo")) {
                 printSim.setText("Doesn't have similar words!");
                 throw new Exception();
             }
+
             JSONArray similar = (JSONArray) myObject.get("similarTo");
 
             for (Object c : similar) {
                 String sim = c + "\n";
                 printSim.appendText(sim);
             }
+
             if (similar.length() == 0) {
                 printSim.setText("This word doesn't have similar words!");
             }
-
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     public void printExample(String searchWord) {
+
         if (searchWord.contains(" ")) {
             searchWord = searchWord.replace(" ", "%20");
         }
+
         String newURL = defaultURL.replace("*", searchWord);
         String exURL = newURL.replace("&", "examples");
 
@@ -204,23 +215,24 @@ public class WordController implements Initializable {
                     .header("x-rapidapi-key", "a1cb4a03cbmsh356febaaaaadf1fp1e52f7jsn24e947c5d6db")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
-
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject myObject = new JSONObject(response.body());
+
             if (myObject.isNull("examples")) {
                 printEx.setText("Doesn't have examples!");
                 return ;
             }
+
             JSONArray example = (JSONArray) myObject.get("examples");
 
             for (Object c : example) {
                 String ex = c + "\n";
                 printEx.appendText(ex);
             }
+
             if (example.length() == 0) {
                 printEx.setText("This word doesn't have example!");
             }
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -234,11 +246,9 @@ public class WordController implements Initializable {
             voice.allocate();// Allocating Voice
             try {
                 voice.speak(printWord.getText());
-
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-
         } else {
             throw new IllegalStateException("Cannot find voice: kevin16");
         }
@@ -257,7 +267,9 @@ public class WordController implements Initializable {
         confirm.setTitle("Warning!");
         confirm.setHeaderText(null);
         confirm.setContentText("Are you sure you want to delete this word?");
+
         if (confirm.showAndWait().get() == ButtonType.OK) {
+
             String command = "DELETE FROM dict WHERE word = ?";
 
             try {

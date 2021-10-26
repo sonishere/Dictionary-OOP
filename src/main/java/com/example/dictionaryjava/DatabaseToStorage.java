@@ -16,13 +16,13 @@ public class DatabaseToStorage {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
             Statement s = con.createStatement();
             ResultSet r = s.executeQuery("SELECT * FROM dict ORDER BY word");
+
             while (r.next()) {
                 wordStore.add(r.getString("word").toLowerCase(Locale.ROOT));
                 speechStore.put(r.getString("word").toLowerCase(Locale.ROOT), r.getString("speech").toLowerCase(Locale.ROOT));
                 typeStore.put(r.getString("word").toLowerCase(Locale.ROOT), r.getString("type").toLowerCase(Locale.ROOT));
                 meaningStore.put(r.getString("word").toLowerCase(Locale.ROOT), r.getString("meaning").toLowerCase(Locale.ROOT));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,7 +31,6 @@ public class DatabaseToStorage {
     public boolean checkDuplicate(String word) {
         return wordStore.contains(word);
     }
-
 
     /**
      * print out the database storage.
@@ -52,12 +51,4 @@ public class DatabaseToStorage {
     public HashMap<String, String> getType() {
         return typeStore;
     }
-
-    /**
-     * testing for print out hashmap.
-     */
-//    public static void main(String[] args) {
-//        DatabaseToStorage db = new DatabaseToStorage();
-//        System.out.println(db.wordStore);
-//    }
 }

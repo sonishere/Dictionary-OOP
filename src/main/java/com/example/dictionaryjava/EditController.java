@@ -57,7 +57,6 @@ public class EditController {
 
     DatabaseToStorage db = new DatabaseToStorage();
 
-
     public void printOldOutput(String Word) {
         oldWord.setText(Word);
         oldSpeech.setText(db.speechStore.get(Word));
@@ -67,7 +66,9 @@ public class EditController {
 
     @FXML
     void addToDatabase(ActionEvent event) throws SQLException {
+
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
+
         if (newWord.getText().trim().isEmpty() || newSpeech.getText().trim().isEmpty() || newType.getText().trim().isEmpty() || newMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
@@ -83,6 +84,7 @@ public class EditController {
             error.showAndWait();
 
         } else {
+
             String command = "UPDATE dict SET word = ?, speech = ?, type = ?, meaning = ? WHERE word = ?";
 
             try {
@@ -122,14 +124,18 @@ public class EditController {
 
     @FXML
     void addToMain(ActionEvent event) throws IOException {
+
         Scene scene;
         Stage stage;
         FXMLLoader root;
+
         if (!newWord.getText().trim().isEmpty() || !newSpeech.getText().trim().isEmpty() || !newType.getText().trim().isEmpty() || !newMeaning.getText().trim().isEmpty()) {
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert!");
             alert.setHeaderText(null);
             alert.setContentText("You haven't finished your work yet.\nAre you sure you want to exit?");
+
             if (alert.showAndWait().get() == ButtonType.OK) {
                 root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
                 stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

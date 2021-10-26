@@ -59,14 +59,15 @@ public class MainController implements Initializable {
         welcomeText.add(" → Type on the search bar to find \nyour word");
         welcomeText.add(" → Click on characters to browse words");
         searchInfo.setItems(welcomeText);
-
     }
 
     /**
      * Switch scene
      */
     public void switchToWord(MouseEvent event) throws IOException {
+
         String searchWord = searchInfo.getSelectionModel().getSelectedItem();
+
         if (searchWord != null) {
             searchInfo.getSelectionModel().selectedItemProperty();
             SwapStage(searchWord);
@@ -74,8 +75,10 @@ public class MainController implements Initializable {
     }
 
     public void inputToWord(ActionEvent event) throws IOException {
+
         String inputWord = input.getText();
         ObservableList<String> listWord = searchInfo.getItems();
+
         for(String word : listWord) {
             if (inputWord != null && inputWord.toLowerCase(Locale.ROOT).equals(word)) {
                 SwapStage(word);
@@ -84,12 +87,13 @@ public class MainController implements Initializable {
     }
 
     private void SwapStage(String word) throws IOException {
+
         root = new FXMLLoader(MainApplication.class.getResource("meaningWord.fxml"));
         stage = (Stage) mainPane.getScene().getWindow();
         scene = new Scene(root.load());
+
         WordController wordController = root.getController();
         wordController.printOutput(word);
-
         wordController.printSynonym(word);
         wordController.printAntonym(word);
         wordController.printSimilar(word);
@@ -129,9 +133,7 @@ public class MainController implements Initializable {
                         String newImage = defaultImage.replace("1", buttonId);
                         Image ima = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newImage)));
                         wordImage.setImage(ima);
-
                         isRun = true;
-
                     }
                 }
             }
@@ -168,9 +170,8 @@ public class MainController implements Initializable {
             sb.append(str).append(im);
             Button b = (Button) alphabetBar.lookup(sb.toString());
             System.out.println(b.getId());
-                b.setStyle(null);
+            b.setStyle(null);
             im++;
-
         }
 
         String value = ((Button) event.getSource()).getText();
@@ -183,7 +184,6 @@ public class MainController implements Initializable {
                 selectedList.add(a);
             }
         }
-
         searchInfo.setItems(selectedList);
     }
 
@@ -223,15 +223,12 @@ public class MainController implements Initializable {
             StringBuilder sb = new StringBuilder();
             sb.append(str).append(i);
             Button b = (Button) alphabetBar.lookup(sb.toString());
-            System.out.println(b.getId());
             if (input.getText().toLowerCase(Locale.ROOT).startsWith(b.getId().toLowerCase(Locale.ROOT))) {
                 b.setStyle("-fx-background-color: #f97449;");
-            }
-            else {
+            } else {
                 b.setStyle(null);
             }
             i++;
-
         }
     }
 }

@@ -77,7 +77,6 @@ public class AddController {
     /**
      * add word to database
      */
-
     public void addToDatabase(ActionEvent event) throws SQLException, IOException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
 
@@ -135,11 +134,13 @@ public class AddController {
                 confirm.setTitle("Success!");
                 confirm.setHeaderText("Added successfully!");
                 confirm.setContentText("Do you want to add another one?");
+
                 if (confirm.showAndWait().get() == ButtonType.OK) {
                     addWord.clear();
                     addSpeech.clear();
                     addType.clear();
                     addMeaning.clear();
+
                 } else {
                     FXMLLoader root = new FXMLLoader(MainApplication.class.getResource("mainUI.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
