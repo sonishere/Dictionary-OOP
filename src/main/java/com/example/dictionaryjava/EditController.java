@@ -75,11 +75,11 @@ public class EditController {
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(command);
-                preparedStatement.setObject(1, newWord.getText());
-                preparedStatement.setObject(2, newSpeech.getText());
-                preparedStatement.setObject(3, newType.getText());
-                preparedStatement.setObject(4, newMeaning.getText());
-                preparedStatement.setObject(5, oldWord.getText());
+                preparedStatement.setString(1, newWord.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(2, newSpeech.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(3, newType.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(4, newMeaning.getText());
+                preparedStatement.setString(5, oldWord.getText());
                 preparedStatement.executeUpdate();
 
                 Alert infor = new Alert(Alert.AlertType.INFORMATION);
@@ -93,7 +93,7 @@ public class EditController {
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root.load());
                 WordController wordController = root.getController();
-                wordController.printOutput(newWord.getText());
+                wordController.printOutput(newWord.getText().trim().replaceAll("\\s+", " "));
                 wordController.printSynonym(newWord.getText());
                 wordController.printAntonym(newWord.getText());
                 wordController.printSimilar(newWord.getText());

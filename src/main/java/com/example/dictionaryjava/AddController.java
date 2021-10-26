@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class AddController {
     @FXML
@@ -40,6 +41,12 @@ public class AddController {
     private Button resetAdd;
 
     DatabaseToStorage db = new DatabaseToStorage();
+
+    Pattern pattern = Pattern.compile("[A-Za-zÀ-ȕ]");
+
+    public boolean isValidate(String text) {
+        return pattern.matcher(text).matches();
+    }
 
     /**
      * quay ve main screen
@@ -84,7 +91,7 @@ public class AddController {
             error.setContentText("Hãy điền đầy đủ thông tin.");
             error.showAndWait();
 
-        } else if (db.checkDuplicate(addWord.getText())) {
+        } else if (db.checkDuplicate(addWord.getText().trim().replaceAll("\\s+", " "))) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Lỗi!");
             error.setHeaderText("Từ bạn muốn thêm đã tồn tại.");
@@ -96,7 +103,7 @@ public class AddController {
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root.load());
             WordController wordController = root.getController();
-            wordController.printOutput(addWord.getText());
+            wordController.printOutput(addWord.getText().trim().replaceAll("\\s+", " "));
             wordController.printSynonym(addWord.getText());
             wordController.printAntonym(addWord.getText());
             wordController.printSimilar(addWord.getText());
@@ -106,15 +113,23 @@ public class AddController {
             stage.show();
 
 
-        } else {
+        } else if (!isValidate(addWord.getText())){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Bruh!");
+            error.setHeaderText("The fuck did you just wrote down");
+            error.setContentText("Get yeet.");
+            error.showAndWait();
+        }
+
+        else {
             String command = "INSERT INTO dict(word, speech, type, meaning) VALUES(?, ?, ?, ?)";
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(command);
-                preparedStatement.setObject(1, addWord.getText());
-                preparedStatement.setObject(2, addSpeech.getText());
-                preparedStatement.setObject(3, addType.getText());
-                preparedStatement.setObject(4, addMeaning.getText());
+                preparedStatement.setString(1, addWord.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(2, addSpeech.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(3, addType.getText().trim().replaceAll("\\s+", " "));
+                preparedStatement.setString(4, addMeaning.getText());
                 preparedStatement.executeUpdate();
 
 
