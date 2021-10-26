@@ -76,7 +76,7 @@ public class AddController {
      */
 
     public void addToDatabase(ActionEvent event) throws SQLException, IOException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
 
         if (addWord.getText().trim().isEmpty() || addSpeech.getText().trim().isEmpty() || addType.getText().trim().isEmpty() || addMeaning.getText().trim().isEmpty()) {
             Alert error = new Alert(Alert.AlertType.ERROR);
