@@ -251,7 +251,7 @@ public class WordController implements Initializable {
     }
 
     public void removeWord(ActionEvent event) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Warning!");

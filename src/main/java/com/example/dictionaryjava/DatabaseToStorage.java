@@ -8,13 +8,12 @@ public class DatabaseToStorage {
     public HashMap<String,String> meaningStore = new HashMap<>();
     public HashMap<String,String> speechStore = new HashMap<>();
     public HashMap<String,String> typeStore = new HashMap<>();
-    public String searchWord;
     /**
      * convert data in database to a storage (hashmap, arraylist) to use later in UX.
      */
     public DatabaseToStorage() {
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "1613877617112001");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionaryDB", "root", "0912231212Abc");
             Statement s = con.createStatement();
             ResultSet r = s.executeQuery("SELECT * FROM dict ORDER BY word");
             while (r.next()) {
