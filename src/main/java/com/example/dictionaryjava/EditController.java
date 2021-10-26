@@ -75,7 +75,7 @@ public class EditController {
             error.setContentText("Please fill in all the fields.");
             error.showAndWait();
 
-        } else if (!Pattern.matches("[a-zA-ZÀ-ȕ.'\s-]{1,100}", newWord.getText())) {
+        } else if (!Pattern.matches("[a-zA-ZÀ-ÖØ-öø-ÿ.'\s-]{1,100}", newWord.getText())) {
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error!");
             error.setHeaderText(null);
