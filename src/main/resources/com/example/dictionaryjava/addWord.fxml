@@ -11,8 +11,8 @@
 <AnchorPane id="wordPane" prefHeight="900.0" prefWidth="1274.0" style="-fx-background-color: #212328;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryjava.AddController">
    <children>
       <TextField fx:id="addWord" layoutX="315.0" layoutY="134.0" prefHeight="50.0" prefWidth="850.0" stylesheets="@styles/style.css" />
-      <TextField fx:id="addType" layoutX="315.0" layoutY="311.0" prefHeight="50.0" prefWidth="850.0" stylesheets="@styles/style.css" />
       <TextField fx:id="addSpeech" layoutX="315.0" layoutY="222.0" prefHeight="50.0" prefWidth="850.0" stylesheets="@styles/style.css" />
+      <TextField fx:id="addType" layoutX="315.0" layoutY="311.0" prefHeight="50.0" prefWidth="850.0" stylesheets="@styles/style.css" />
       <TextArea fx:id="addMeaning" layoutX="315.0" layoutY="401.0" prefHeight="313.0" prefWidth="850.0" />
       <Button fx:id="submitWord" layoutX="1032.0" layoutY="749.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="44.0" prefWidth="133.0" text="Add" />
       <Button fx:id="resetAdd" layoutX="864.0" layoutY="748.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="133.0" text="Reset" />

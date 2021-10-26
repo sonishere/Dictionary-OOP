@@ -12,8 +12,8 @@
     <children>
         <Button id="backMain" layoutY="7.0" mnemonicParsing="false" onAction="#addToMain" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #212328;" text=" " textAlignment="CENTER" />
         <TextField fx:id="newWord" layoutX="712.0" layoutY="128.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="newType" layoutX="712.0" layoutY="305.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
         <TextField fx:id="newSpeech" layoutX="712.0" layoutY="216.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="newType" layoutX="712.0" layoutY="305.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
         <TextArea fx:id="newMeaning" layoutX="712.0" layoutY="395.0" prefHeight="313.0" prefWidth="425.0" />
         <Button fx:id="submitWord" layoutX="965.0" layoutY="748.0" mnemonicParsing="false" onAction="#addToDatabase" prefHeight="45.0" prefWidth="172.0" text="Save change" />
         <Button fx:id="resetAdd" layoutX="797.0" layoutY="747.0" mnemonicParsing="false" onAction="#resetAdd" prefHeight="44.0" prefWidth="133.0" text="Reset" />
@@ -22,8 +22,8 @@
         <Label id="typeLabel" alignment="CENTER" layoutX="561.0" layoutY="314.0" prefHeight="32.0" prefWidth="72.0" stylesheets="@styles/style.css" text="Type" textAlignment="CENTER" AnchorPane.leftAnchor="561.0" />
         <Label id="meaningLabel" alignment="CENTER" layoutX="534.0" layoutY="403.0" prefHeight="32.0" prefWidth="127.0" stylesheets="@styles/style.css" text="Meaning" textAlignment="CENTER" AnchorPane.leftAnchor="534.0" />
         <TextField fx:id="oldWord" editable="false" layoutX="57.0" layoutY="129.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
-        <TextField fx:id="oldType" editable="false" layoutX="57.0" layoutY="306.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
         <TextField fx:id="oldSpeech" editable="false" layoutX="57.0" layoutY="217.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
+        <TextField fx:id="oldType" editable="false" layoutX="57.0" layoutY="306.0" prefHeight="50.0" prefWidth="425.0" stylesheets="@styles/style.css" />
         <TextArea fx:id="oldMeaning" editable="false" layoutX="57.0" layoutY="396.0" prefHeight="313.0" prefWidth="425.0" />
       <Button id="copy" layoutX="1154.0" layoutY="127.0" mnemonicParsing="false" onAction="#wordCopy" prefHeight="55.0" prefWidth="63.0">
          <graphic>
