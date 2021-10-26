@@ -21,7 +21,7 @@ public class AboutController {
 
     @FXML
     void fb3(ActionEvent event) throws URISyntaxException, IOException {
-        Desktop.getDesktop().browse(new URI("https://https://www.facebook.com/poteto.te.kotoba/"));
+        Desktop.getDesktop().browse(new URI("https://www.facebook.com/poteto.te.kotoba/"));
     }
 
     @FXML
